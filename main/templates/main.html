@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Kelas D</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-top-buttons" aria-controls="navbar-top-buttons" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-top-buttons">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -25,6 +39,18 @@
                 <td>{{product.price}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.pk %}">
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
