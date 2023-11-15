@@ -1,6 +1,6 @@
 import datetime
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound, JsonResponse
 from main.forms import ProductForm
 from django.urls import reverse
 from django.core import serializers
@@ -13,8 +13,9 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 # Create your views here.
+@login_required
 def show_main(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(user=request.user)
 
     context = {
         'name': 'Hugo',
